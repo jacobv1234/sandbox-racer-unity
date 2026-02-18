@@ -135,6 +135,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             friction = airFriction;
+            rotation = 0.0f; // unable to steer in air
         }
 
         if ((!UpPressed && !DownPressed) || !grounded) // airborne or not controlling

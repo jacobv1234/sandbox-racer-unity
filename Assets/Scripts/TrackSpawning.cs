@@ -18,13 +18,8 @@ public class TrackSpawning : MonoBehaviour
     [SerializeField]
     private string selected;
 
-    [SerializeField]
     private float rotation = 0.0f;
-
-    [SerializeField]
     private GameObject child;
-
-    [SerializeField]
     private Vector3 position;
 
     private InputSystem_Actions actions;
@@ -59,6 +54,7 @@ public class TrackSpawning : MonoBehaviour
         child = Instantiate(selectedObject, position, Quaternion.identity);
         Vector3 rotateVector = new Vector3(0, rotation, 0);
         child.transform.Rotate(rotateVector);
+        child.transform.name += transform.name; // make all tiles have unique names so they can be clicked individually
     }
     
     void rotate()
@@ -72,7 +68,7 @@ public class TrackSpawning : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        position = transform.position;
+        position = transform.position + (Vector3.up);
         actions = new InputSystem_Actions();
         actions.Enable();
     }
@@ -100,5 +96,11 @@ public class TrackSpawning : MonoBehaviour
         {
             rotate();
         }
+    }
+
+    // called by ObjectPreview when the selected tool changes
+    void OnUpdateSelected(string newSelected)
+    {
+        selected = newSelected;
     }
 }

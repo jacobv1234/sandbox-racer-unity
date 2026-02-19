@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6888733208665099945}
   m_Layer: 0
   m_Name: Tile
-  m_TagString: Untagged
+  m_TagString: EditorTile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,10 +109,7 @@ MonoBehaviour:
   corner: {fileID: 1665659189922600239, guid: 386d18595aeaceb459cecb7c97fbf2dd, type: 3}
   checkpoint: {fileID: 5308398466058832327, guid: 9e411fb94cd1d5240a077768649299ce, type: 3}
   finish: {fileID: 8630195662508657659, guid: be5c29bd3b8ac0e4d8bbfc10c902bda9, type: 3}
-  selected: corner
-  rotation: 0
-  child: {fileID: 0}
-  position: {x: 0, y: 0, z: 0}
+  selected: blank
 --- !u!64 &6888733208665099945
 MeshCollider:
   m_ObjectHideFlags: 0

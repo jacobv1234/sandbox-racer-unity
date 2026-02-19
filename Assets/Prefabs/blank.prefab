@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21624fb8b82f7994099c8747ca6b5472, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4374127536394626711}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21624fb8b82f7994099c8747ca6b5472, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4196265333998145725}
   m_SourcePrefab: {fileID: 100100000, guid: 21624fb8b82f7994099c8747ca6b5472, type: 3}
 --- !u!1 &4386890307981635709 stripped
 GameObject:
@@ -86,3 +89,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4196265333998145725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386890307981635709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab4d681e94dba04088144ca86c8cc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeleteTrack

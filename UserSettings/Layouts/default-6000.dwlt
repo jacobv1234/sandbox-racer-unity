@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -246,14 +246,14 @@ MonoBehaviour:
     y: 424
     width: 1131.2
     height: 292.8
-  m_MinSize: {x: 231, y: 276}
-  m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -689,12 +689,15 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      scrollPos: {x: 0, y: 608}
+      m_SelectedIDs:
+      - m_Data: 55716
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1290
+      - m_Data: -34814
+      - m_Data: -18558
+      - m_Data: -1288
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1122,9 +1125,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -49.227066, y: 41.47019, z: -58.71014}
+    m_Target: {x: -21.468143, y: 2.9411597, z: -10.252064}
     speed: 2
-    m_Value: {x: -49.227066, y: 41.47019, z: -58.71014}
+    m_Value: {x: -21.468143, y: 2.9411597, z: -10.252064}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1170,13 +1173,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.23806864, y: 0.3631461, z: -0.09652497, w: 0.89564705}
+    m_Target: {x: 0.20260721, y: 0.3763289, z: -0.084703915, w: 0.90011764}
     speed: 2
-    m_Value: {x: 0.2380624, y: 0.36313656, z: -0.096522436, w: 0.89562356}
+    m_Value: {x: 0.20260118, y: 0.37631768, z: -0.08470139, w: 0.9000908}
   m_Size:
-    m_Target: 35.804844
+    m_Target: 49.649307
     speed: 2
-    m_Value: 35.804844
+    m_Value: 49.649307
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1314,7 +1317,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1324,21 +1327,22 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\jacob\Desktop\UEA STUFF\gamedev\COURSEWORK\sandbox-racer-unity
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 35908
+    - m_Data: 35910
     m_LastClickedID:
-      m_Data: 35908
+      m_Data: 35910
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 35804
+    - m_Data: 35902
     - m_Data: 1000000000
     - m_Data: 2147483647
     m_RenameOverlay:
@@ -1400,8 +1404,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 55716
+    m_LastClickedInstanceID: 55716
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 39916

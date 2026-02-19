@@ -22,23 +22,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50008726
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49991274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.50008726
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.49991274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -59,6 +59,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3093821918932670099}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8185067299723424919}
   m_SourcePrefab: {fileID: 100100000, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
 --- !u!1 &8630195662508657659 stripped
 GameObject:
@@ -87,3 +90,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -462981019419857548, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
+--- !u!114 &8185067299723424919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630195662508657659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab4d681e94dba04088144ca86c8cc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeleteTrack

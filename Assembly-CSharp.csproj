@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Input\InputSystem_Actions.cs" />
+    <Compile Include="Assets\Scripts\TrackSpawning.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,8 +22,6 @@ public class TrackSpawning : MonoBehaviour
     private GameObject child;
     private Vector3 position;
 
-    private InputSystem_Actions actions;
-
 
     // create a tile
     void create_object()
@@ -56,21 +54,11 @@ public class TrackSpawning : MonoBehaviour
         child.transform.Rotate(rotateVector);
         child.transform.name += transform.name; // make all tiles have unique names so they can be clicked individually
     }
-    
-    void rotate()
-    {
-        rotation += 90;
-        if (rotation >= 360){
-            rotation = 0.0f;
-        }
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         position = transform.position + (Vector3.up);
-        actions = new InputSystem_Actions();
-        actions.Enable();
     }
 
     // Update is called once per frame
@@ -90,17 +78,16 @@ public class TrackSpawning : MonoBehaviour
                 create_object();
             }
         }
-
-        // rotate command
-        if (actions.Player.Respawn.WasPressedThisFrame())
-        {
-            rotate();
-        }
     }
 
     // called by ObjectPreview when the selected tool changes
     void OnUpdateSelected(string newSelected)
     {
         selected = newSelected;
+    }
+
+    void OnUpdateRotation(float newRotation)
+    {
+        rotation = newRotation;
     }
 }

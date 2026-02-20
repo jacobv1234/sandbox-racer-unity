@@ -28,12 +28,21 @@ public class ObjectPreview : MonoBehaviour
     private string[] tools = { "blank","straight","corner","checkpoint","finish"};
     private GameObject[] objects;
 
-    void rotate()
+    void rotateRight()
     {
         rotation += 90;
         if (rotation >= 360)
         {
             rotation = 0.0f;
+        }
+        updateTiles();
+    }
+    void rotateLeft()
+    {
+        rotation -= 90;
+        if (rotation < 0)
+        {
+            rotation = 270.0f;
         }
     }
 
@@ -69,6 +78,9 @@ public class ObjectPreview : MonoBehaviour
         child = Instantiate(selectedObject, position, Quaternion.identity);
         Vector3 rotateVector = new Vector3(0, rotation, 0);
         child.transform.Rotate(rotateVector);
+
+        // also update the editor tiles with the new settings
+        updateTiles();
     }
 
     void scrollToolsDown()
@@ -77,7 +89,6 @@ public class ObjectPreview : MonoBehaviour
         {
             selectedIndex += 1;
             selected = tools[selectedIndex];
-            updateTiles();
         }
     }
 
@@ -87,7 +98,6 @@ public class ObjectPreview : MonoBehaviour
         {
             selectedIndex -= 1;
             selected = tools[selectedIndex];
-            updateTiles();
         }
     }
 
@@ -96,6 +106,7 @@ public class ObjectPreview : MonoBehaviour
         foreach(GameObject obj in objects)
         {
             obj.SendMessage("OnUpdateSelected",selected,SendMessageOptions.DontRequireReceiver);
+            obj.SendMessage("OnUpdateRotation", rotation, SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -106,19 +117,14 @@ public class ObjectPreview : MonoBehaviour
         position = transform.position + (Vector3.up);
         actions = new InputSystem_Actions();
         actions.Enable();
-        updatePreview();
         objects = GameObject.FindGameObjectsWithTag("EditorTile");
         Debug.Log(objects.Length);
+        updatePreview();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (actions.Player.Respawn.WasPressedThisFrame())
-        {
-            rotate();
-            updatePreview();
-        }
         if (actions.Player.Accelerate.WasPressedThisFrame())
         {
             scrollToolsUp();
@@ -127,6 +133,16 @@ public class ObjectPreview : MonoBehaviour
         if (actions.Player.Brake.WasPressedThisFrame())
         {
             scrollToolsDown();
+            updatePreview();
+        }
+        if (actions.Player.Left.WasPressedThisFrame())
+        {
+            rotateLeft();
+            updatePreview();
+        }
+        if (actions.Player.Right.WasPressedThisFrame())
+        {
+            rotateRight();
             updatePreview();
         }
     }

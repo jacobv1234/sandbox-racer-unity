@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class DeleteTrack : MonoBehaviour
 {
+    private bool willDestroy = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,10 +20,16 @@ public class DeleteTrack : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.transform.name == transform.name)
+            if (Physics.Raycast(ray, out hit) && hit.transform.name == transform.name && willDestroy)
             {
                 Destroy(gameObject);
             }
         }
+    }
+
+    // called by ObjectPreview to disable this effect
+    void DoNotDestroy()
+    {
+        willDestroy = false;
     }
 }

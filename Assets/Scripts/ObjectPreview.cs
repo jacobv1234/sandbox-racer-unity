@@ -79,6 +79,9 @@ public class ObjectPreview : MonoBehaviour
         Vector3 rotateVector = new Vector3(0, rotation, 0);
         child.transform.Rotate(rotateVector);
 
+        // disables click-to-remove on the preview object
+        child.SendMessage("DoNotDestroy", SendMessageOptions.DontRequireReceiver);
+
         // also update the editor tiles with the new settings
         updateTiles();
     }

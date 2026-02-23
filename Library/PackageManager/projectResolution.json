@@ -9,6 +9,16 @@
     "C:\\Program Files\\Unity\\Hub\\Editor\\6000.3.5f2\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
   ],
   "outputs": {
+    "com.unity.2d.sprite@1.0.0": {
+      "name": "com.unity.2d.sprite",
+      "displayName": "2D Sprite",
+      "resolvedPath": "C:\\Users\\jacob\\Desktop\\UEA STUFF\\gamedev\\COURSEWORK\\sandbox-racer-unity\\Library\\PackageCache\\com.unity.2d.sprite@82f01c8c75ca",
+      "fingerprint": "82f01c8c75ca2d707990e8dc249b71ab7d1aa33e",
+      "editorCompatibility": "2019.2.0a1",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
     "com.unity.collab-proxy@2.11.2": {
       "name": "com.unity.collab-proxy",
       "displayName": "Unity Version Control",

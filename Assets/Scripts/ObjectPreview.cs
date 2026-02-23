@@ -35,7 +35,7 @@ public class ObjectPreview : MonoBehaviour
         {
             rotation = 0.0f;
         }
-        updateTiles();
+        updatePreview();
     }
     void rotateLeft()
     {
@@ -44,6 +44,7 @@ public class ObjectPreview : MonoBehaviour
         {
             rotation = 270.0f;
         }
+        updatePreview();
     }
 
     void updatePreview()
@@ -92,6 +93,7 @@ public class ObjectPreview : MonoBehaviour
         {
             selectedIndex += 1;
             selected = tools[selectedIndex];
+            updatePreview();
         }
     }
 
@@ -101,6 +103,7 @@ public class ObjectPreview : MonoBehaviour
         {
             selectedIndex -= 1;
             selected = tools[selectedIndex];
+            updatePreview();
         }
     }
 
@@ -131,22 +134,18 @@ public class ObjectPreview : MonoBehaviour
         if (actions.Player.Accelerate.WasPressedThisFrame())
         {
             scrollToolsUp();
-            updatePreview();
         }
         if (actions.Player.Brake.WasPressedThisFrame())
         {
             scrollToolsDown();
-            updatePreview();
         }
         if (actions.Player.Left.WasPressedThisFrame())
         {
             rotateLeft();
-            updatePreview();
         }
         if (actions.Player.Right.WasPressedThisFrame())
         {
             rotateRight();
-            updatePreview();
         }
     }
 }

@@ -61,11 +61,16 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.5f2\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CameraZoom.cs" />
     <Compile Include="Assets\Input\InputSystem_Actions.cs" />
+    <Compile Include="Assets\Scripts\CarSpawner.cs" />
+    <Compile Include="Assets\Scripts\HideDuringRace.cs" />
     <Compile Include="Assets\Scripts\TrackSpawning.cs" />
     <Compile Include="Assets\Scripts\DeleteTrack.cs" />
     <Compile Include="Assets\Scripts\ObjectPreview.cs" />
+    <Compile Include="Assets\Scripts\ModeSwitchSpriteSwap.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\StateTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

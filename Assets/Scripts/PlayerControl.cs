@@ -28,6 +28,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField]
     private bool grounded = false;
 
+    [SerializeField]
+    private float scale = 0.8f;
+
     bool UpPressed, DownPressed, LeftPressed, RightPressed;
 
     private InputSystem_Actions actions;
@@ -121,7 +124,7 @@ public class PlayerControl : MonoBehaviour
 
     void CheckAirborne()
     {
-        Vector3 offset = new Vector3(0,1,0);
+        Vector3 offset = new Vector3(0, 1, 0);
         grounded = Physics.Raycast(transform.position + offset, Vector3.down, objectHeight);
     }
 
@@ -190,6 +193,11 @@ public class PlayerControl : MonoBehaviour
         respawnRotation = transform.rotation;
     }
 
+    private void Start()
+    {
+        transform.localScale = new Vector3(scale, scale, scale);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -211,5 +219,13 @@ public class PlayerControl : MonoBehaviour
         Turn();
         CheckAirborne();
         DecayValues();
+    }
+
+    private void OnDestroy()
+    {
+        if (actions != null)
+        {
+            actions.Disable(); // memory cleanup
+        }
     }
 }

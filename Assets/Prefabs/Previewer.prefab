@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5237698241510287709}
   - component: {fileID: 2990401288244751372}
   - component: {fileID: 3499708971259693731}
+  - component: {fileID: -5913164721878545301}
   m_Layer: 0
   m_Name: Previewer
   m_TagString: Untagged
@@ -109,7 +110,6 @@ MonoBehaviour:
   corner: {fileID: 1665659189922600239, guid: 386d18595aeaceb459cecb7c97fbf2dd, type: 3}
   checkpoint: {fileID: 5308398466058832327, guid: 9e411fb94cd1d5240a077768649299ce, type: 3}
   finish: {fileID: 8630195662508657659, guid: be5c29bd3b8ac0e4d8bbfc10c902bda9, type: 3}
-  selected: corner
 --- !u!64 &3499708971259693731
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -132,3 +132,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-5913164721878545301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524414955218650435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f206a10cd4440944a95273c8c9f19263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideDuringRace

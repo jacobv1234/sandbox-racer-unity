@@ -62,6 +62,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8185067299723424919}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8261760555083779975}
   m_SourcePrefab: {fileID: 100100000, guid: f028136e58e6b3141bb8cd092f474e7f, type: 3}
 --- !u!1 &8630195662508657659 stripped
 GameObject:
@@ -102,3 +105,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab4d681e94dba04088144ca86c8cc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeleteTrack
+--- !u!114 &8261760555083779975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8630195662508657659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11daf592dc868ae439f68aa72ae2979e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarSpawner
+  playerCarPrefab: {fileID: 3273165481774544806, guid: 4d81a3f26bf3a394dbe02af5a1099e4d, type: 3}

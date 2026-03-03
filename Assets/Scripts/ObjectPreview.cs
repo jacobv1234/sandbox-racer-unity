@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -82,6 +83,14 @@ public class ObjectPreview : MonoBehaviour
 
         // disables click-to-remove on the preview object
         child.SendMessage("DoNotDestroy", SendMessageOptions.DontRequireReceiver);
+
+        // disable spawning a car on the preview
+        if (child.GetComponent<CarSpawner>() != null)
+        {
+            Destroy(child.GetComponent<CarSpawner>());
+        }
+
+        child.AddComponent<HideDuringRace>();
 
         // also update the editor tiles with the new settings
         updateTiles();

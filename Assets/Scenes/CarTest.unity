@@ -1798,6 +1798,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8019011138475492877, guid: 48f9f2636238aae4da68056e349c4eea, type: 3}
+      propertyPath: willDestroy
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3513420922110088536, guid: 48f9f2636238aae4da68056e349c4eea, type: 3}
       propertyPath: m_Name
       value: straight
@@ -2071,6 +2075,10 @@ PrefabInstance:
       value: Hatchback
       objectReference: {fileID: 0}
     - target: {fileID: 3660423872718453386, guid: 4d81a3f26bf3a394dbe02af5a1099e4d, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660423872718453386, guid: 4d81a3f26bf3a394dbe02af5a1099e4d, type: 3}
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
@@ -2087,6 +2095,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8261760555083779975, guid: be5c29bd3b8ac0e4d8bbfc10c902bda9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8630195662508657659, guid: be5c29bd3b8ac0e4d8bbfc10c902bda9, type: 3}
       propertyPath: m_Name
       value: finish

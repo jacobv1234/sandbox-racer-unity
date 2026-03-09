@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class DeleteTrack : MonoBehaviour
 {
+    [SerializeField]
     private bool willDestroy = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

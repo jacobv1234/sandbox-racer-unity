@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 43.2
+    y: 0
     width: 1536
     height: 36
   m_SerializedDataModeController:
@@ -567,8 +567,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 272
-    y: 79.200005
+    x: 273
+    y: 24
     width: 857.19995
     height: 398
   m_SerializedDataModeController:
@@ -644,7 +644,7 @@ MonoBehaviour:
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.4363426
-  m_LastWindowPixelSize: {x: 1071.5, y: 497.5}
+  m_LastWindowPixelSize: {x: 857.19995, y: 398}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79.200005
+    y: 24
     width: 271
     height: 398
   m_SerializedDataModeController:
@@ -692,8 +692,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: 27844
+      m_SelectedIDs: []
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
@@ -1290,7 +1289,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 503.2
+    y: 448
     width: 1130.2
     height: 266.8
   m_SerializedDataModeController:
@@ -1341,9 +1340,7 @@ MonoBehaviour:
       m_Data: 36392
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 36328
-    - m_Data: 1000000000
-    - m_Data: 2147483647
+    - m_Data: 36324
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1376,9 +1373,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 36328
-    - m_Data: 1000000000
-    - m_Data: 2147483647
+    - m_Data: 36324
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1502,8 +1497,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1131.2001
-    y: 79.200005
+    x: 1132.2
+    y: 24
     width: 403.80005
     height: 690.8
   m_SerializedDataModeController:

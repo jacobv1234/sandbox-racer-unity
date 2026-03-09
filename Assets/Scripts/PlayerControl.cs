@@ -124,8 +124,8 @@ public class PlayerControl : MonoBehaviour
 
     void CheckAirborne()
     {
-        Vector3 offset = new Vector3(0, 1, 0);
-        grounded = Physics.Raycast(transform.position + offset, Vector3.down, objectHeight);
+        Vector3 offset = transform.rotation * Vector3.up;
+        grounded = Physics.Raycast(transform.position + offset, transform.rotation * Vector3.down, objectHeight);
     }
 
     void DecayValues()
@@ -226,6 +226,15 @@ public class PlayerControl : MonoBehaviour
         if (actions != null)
         {
             actions.Disable(); // memory cleanup
+        }
+    }
+
+    // stop momentum when hit wall
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.contactCount > 10)
+        {
+            speed = 0;
         }
     }
 }

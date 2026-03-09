@@ -221,16 +221,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0369296f9fdaad44ca50bf82bbddacba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
-  turnSpeed: 200
+  turnSpeed: 190
   rotationAccel: 10
   rotationFriction: 50
-  topSpeed: 20
+  topSpeed: 18
   acceleration: 0.3
   groundFriction: 2
   airFriction: 0.3
   speed: 0
   rotation: 0
   grounded: 0
+  scale: 0.7
+  checkpointParticle: {fileID: 5204552828217109443, guid: c122e37408533ce4abf929f693433df6, type: 3}
+  finishParticle: {fileID: 5204552828217109443, guid: 47accef5b2c68b848b54f877b0d03971, type: 3}
 --- !u!54 &3660423872718453386
 Rigidbody:
   m_ObjectHideFlags: 0

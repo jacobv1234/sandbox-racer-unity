@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5957070675465594898}
   - component: {fileID: 4864717670495231023}
   - component: {fileID: -2292115410257574890}
+  - component: {fileID: 7871309206035227744}
   m_Layer: 0
   m_Name: checkpoint
   m_TagString: Untagged
@@ -129,3 +130,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab4d681e94dba04088144ca86c8cc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeleteTrack
+  willDestroy: 1
+--- !u!65 &7871309206035227744
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308398466058832327}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 7, z: 0.1}
+  m_Center: {x: 0, y: 2.5, z: 0}

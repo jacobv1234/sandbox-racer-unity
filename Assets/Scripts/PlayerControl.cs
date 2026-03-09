@@ -30,6 +30,10 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField]
     private float scale = 0.8f;
+    [SerializeField]
+    private GameObject checkpointParticle;
+    [SerializeField]
+    private GameObject finishParticle;
 
     bool UpPressed, DownPressed, LeftPressed, RightPressed;
 
@@ -120,6 +124,8 @@ public class PlayerControl : MonoBehaviour
     {
         transform.position = respawnCoords;
         transform.rotation = respawnRotation;
+        speed = 0;
+        rotation = 0;
     }
 
     void CheckAirborne()
@@ -235,6 +241,28 @@ public class PlayerControl : MonoBehaviour
         if (collision.contactCount > 10)
         {
             speed = 0;
+        }
+    }
+
+    // hit checkpoint / finish line
+    private void OnTriggerEnter(Collider other)
+    {
+        // update respawn location
+        respawnCoords = other.transform.position + Vector3.up;
+        respawnRotation = other.transform.rotation;
+
+        // detect trigger type
+        if (other.name.Contains("checkpoint"))
+        {
+            // checkpoint
+            // create particle
+            Instantiate(checkpointParticle, respawnCoords, respawnRotation);
+        }
+        else
+        {
+            // finish line
+            // create particle
+            Instantiate(finishParticle, respawnCoords, respawnRotation);
         }
     }
 }

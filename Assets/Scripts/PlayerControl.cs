@@ -238,7 +238,7 @@ public class PlayerControl : MonoBehaviour
     // stop momentum when hit wall
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.contactCount > 10)
+        if (collision.contactCount > 8)
         {
             speed = 0;
         }

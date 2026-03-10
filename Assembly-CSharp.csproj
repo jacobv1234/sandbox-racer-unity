@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\DeleteTrack.cs" />
     <Compile Include="Assets\Scripts\ObjectPreview.cs" />
     <Compile Include="Assets\Scripts\ModeSwitchSpriteSwap.cs" />
+    <Compile Include="Assets\Scripts\Track.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\StateTracker.cs" />
   </ItemGroup>

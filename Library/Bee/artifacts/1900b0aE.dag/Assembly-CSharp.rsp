@@ -440,6 +440,7 @@
 "Assets/Scripts/ObjectPreview.cs"
 "Assets/Scripts/PlayerControl.cs"
 "Assets/Scripts/StateTracker.cs"
+"Assets/Scripts/Track.cs"
 "Assets/Scripts/TrackSpawning.cs"
 -langversion:9.0
 /deterministic

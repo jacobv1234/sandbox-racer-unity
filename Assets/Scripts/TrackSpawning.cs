@@ -90,4 +90,10 @@ public class TrackSpawning : MonoBehaviour
     {
         rotation = newRotation;
     }
+
+    public GameObject getChild()
+    {
+        return child;
+    }
+
 }

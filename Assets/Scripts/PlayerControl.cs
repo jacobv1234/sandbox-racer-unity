@@ -1,5 +1,5 @@
 using System;
-using Unity.VisualScripting;
+using System.Linq; // array tools such as Concat and Contains
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -41,6 +41,10 @@ public class PlayerControl : MonoBehaviour
 
     private Vector3 respawnCoords;
     private Quaternion respawnRotation;
+
+    private Track track;
+    private GameObject[] checkpoints;
+    private int lap;
     
 
     void Accelerate()
@@ -202,6 +206,10 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(scale, scale, scale);
+
+        track = GameObject.Find("TileFloor").GetComponent<Track>();
+        lap = 1;
+        checkpoints = new GameObject[0];
     }
 
     // Update is called once per frame
@@ -255,14 +263,28 @@ public class PlayerControl : MonoBehaviour
         if (other.name.Contains("checkpoint"))
         {
             // checkpoint
-            // create particle
-            Instantiate(checkpointParticle, respawnCoords, respawnRotation);
+            // check it's a new checkpoint
+            if (!checkpoints.Contains(other.gameObject))
+            {
+                // create particle
+                Instantiate(checkpointParticle, respawnCoords, respawnRotation);
+                // register checkpoint
+                checkpoints = checkpoints.Concat(new GameObject[] { other.gameObject }).ToArray();
+            }
         }
         else
         {
             // finish line
-            // create particle
-            Instantiate(finishParticle, respawnCoords, respawnRotation);
+            // check lap is valid
+            if (track.getCheckpointCount() == checkpoints.Length)
+            {
+                // create particle
+                Instantiate(finishParticle, respawnCoords, respawnRotation);
+
+                // reset lap
+                checkpoints = new GameObject[0];
+                lap += 1;
+            }
         }
     }
 }

@@ -106,4 +106,9 @@ public class Track : MonoBehaviour
             }
         }
     }
+
+    public int getCheckpointCount()
+    {
+        return checkpoints.Length;
+    }
 }

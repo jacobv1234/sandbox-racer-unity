@@ -17,12 +17,23 @@ public class DeleteTrack : MonoBehaviour
     void Start()
     {
         canDestroy = willDestroy;
-        state = GameObject.FindGameObjectWithTag("State").GetComponent<StateTracker>();
+        GameObject stateObj = GameObject.FindGameObjectWithTag("State");
+        if (stateObj != null)
+        {
+            state = stateObj.GetComponent<StateTracker>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // do not run if no state detected (carTest scene)
+        if (state == null)
+        {
+            return;
+        }
+
+
         // detect if object was clicked
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {

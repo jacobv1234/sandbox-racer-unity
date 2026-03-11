@@ -34,6 +34,10 @@ public class PlayerControl : MonoBehaviour
     private GameObject checkpointParticle;
     [SerializeField]
     private GameObject finishParticle;
+    [SerializeField]
+    private GameObject respawnParticle;
+
+    private ParticleSystem trail;
 
     bool UpPressed, DownPressed, LeftPressed, RightPressed;
 
@@ -130,6 +134,7 @@ public class PlayerControl : MonoBehaviour
         transform.rotation = respawnRotation;
         speed = 0;
         rotation = 0;
+        Instantiate(respawnParticle, respawnCoords, respawnRotation);
     }
 
     void CheckAirborne()
@@ -192,6 +197,18 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void UpdateTrail()
+    {
+        if (!trail.isPlaying && speed > 0 && grounded)
+        {
+            trail.Play();
+        }
+        if (trail.isPlaying && (speed == 0 || !grounded))
+        {
+            trail.Stop();
+        }
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -206,8 +223,13 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(scale, scale, scale);
+        trail = GetComponent<ParticleSystem>();
 
-        track = GameObject.Find("TileFloor").GetComponent<Track>();
+        GameObject trackObj = GameObject.Find("TileFloor");
+        if (trackObj != null)
+        {
+            track = trackObj.GetComponent<Track>();
+        }
         lap = 1;
         checkpoints = new GameObject[0];
     }
@@ -233,6 +255,7 @@ public class PlayerControl : MonoBehaviour
         Turn();
         CheckAirborne();
         DecayValues();
+        UpdateTrail();
     }
 
     private void OnDestroy()
@@ -255,6 +278,11 @@ public class PlayerControl : MonoBehaviour
     // hit checkpoint / finish line
     private void OnTriggerEnter(Collider other)
     {
+        if (track == null)
+        {
+            return;
+        }
+
         // update respawn location
         respawnCoords = other.transform.position + Vector3.up;
         respawnRotation = other.transform.rotation;

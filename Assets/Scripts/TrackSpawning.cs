@@ -96,4 +96,11 @@ public class TrackSpawning : MonoBehaviour
         return child;
     }
 
+    public void deleteChild()
+    {
+        if (child != null)
+        {
+            Destroy(child);
+        }
+    }
 }

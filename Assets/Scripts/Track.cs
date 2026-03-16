@@ -83,6 +83,22 @@ public class Track : MonoBehaviour
         return "";
     }
 
+    // called by clear button
+    void clearTrack()
+    {
+        for (int x = 0; x < 8; x++)
+        {
+            for (int z = 0; z < 8; z++)
+            {
+                TrackSpawning spawner = tiles[x, z].GetComponent<TrackSpawning>();
+                if (spawner != null)
+                {
+                    spawner.deleteChild();
+                }
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

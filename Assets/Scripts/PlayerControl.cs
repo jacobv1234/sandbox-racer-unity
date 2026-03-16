@@ -89,6 +89,10 @@ public class PlayerControl : MonoBehaviour
         {
             return;
         }
+        if (rotation < 0)
+        {
+            rotation = 0;
+        }
         if (rotation < turnSpeed)
         {
             rotation += rotationAccel;
@@ -104,6 +108,10 @@ public class PlayerControl : MonoBehaviour
         if (!grounded)
         {
             return;
+        }
+        if (rotation > 0)
+        {
+            rotation = 0;
         }
         if (rotation > -turnSpeed)
         {
@@ -214,7 +222,7 @@ public class PlayerControl : MonoBehaviour
     void Awake()
     {
         actions = new InputSystem_Actions();
-        actions.Enable();
+        //actions.Enable();
 
         respawnCoords = transform.position;
         respawnRotation = transform.rotation;
@@ -257,6 +265,12 @@ public class PlayerControl : MonoBehaviour
         DecayValues();
         UpdateTrail();
     }
+
+    private void startControls()
+    {
+        actions.Enable();
+    }
+
 
     private void OnDestroy()
     {

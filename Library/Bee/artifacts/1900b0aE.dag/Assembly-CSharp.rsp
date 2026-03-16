@@ -434,6 +434,7 @@
 "Assets/Input/InputSystem_Actions.cs"
 "Assets/Scripts/CameraZoom.cs"
 "Assets/Scripts/CarSpawner.cs"
+"Assets/Scripts/Countdown.cs"
 "Assets/Scripts/DeleteTrack.cs"
 "Assets/Scripts/HideDuringRace.cs"
 "Assets/Scripts/ModeSwitchSpriteSwap.cs"

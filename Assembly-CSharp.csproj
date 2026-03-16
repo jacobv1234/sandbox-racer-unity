@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\CarSpawner.cs" />
     <Compile Include="Assets\Scripts\HideDuringRace.cs" />
     <Compile Include="Assets\Scripts\TrackSpawning.cs" />
+    <Compile Include="Assets\Scripts\FinishText.cs" />
     <Compile Include="Assets\Scripts\DeleteTrack.cs" />
     <Compile Include="Assets\Scripts\ObjectPreview.cs" />
     <Compile Include="Assets\Scripts\ModeSwitchSpriteSwap.cs" />

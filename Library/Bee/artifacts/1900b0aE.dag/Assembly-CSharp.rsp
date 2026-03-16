@@ -436,6 +436,7 @@
 "Assets/Scripts/CarSpawner.cs"
 "Assets/Scripts/Countdown.cs"
 "Assets/Scripts/DeleteTrack.cs"
+"Assets/Scripts/FinishText.cs"
 "Assets/Scripts/HideDuringRace.cs"
 "Assets/Scripts/ModeSwitchSpriteSwap.cs"
 "Assets/Scripts/ObjectPreview.cs"

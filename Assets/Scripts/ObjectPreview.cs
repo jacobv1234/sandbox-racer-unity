@@ -22,8 +22,8 @@ public class ObjectPreview : MonoBehaviour
     private float rotation = 0.0f;
     private InputSystem_Actions actions;
     private GameObject child;
-    private string selected = "blank";
-    private int selectedIndex = 0;
+    private string selected = "straight";
+    private int selectedIndex = 1;
     private Vector3 position;
 
     private string[] tools = { "blank","straight","corner","checkpoint","finish"};
@@ -101,9 +101,13 @@ public class ObjectPreview : MonoBehaviour
         if (selectedIndex < tools.Length - 1)
         {
             selectedIndex += 1;
-            selected = tools[selectedIndex];
-            updatePreview();
         }
+        else
+        {
+            selectedIndex = 0;
+        }
+        selected = tools[selectedIndex];
+        updatePreview();
     }
 
     void scrollToolsUp()
@@ -111,9 +115,13 @@ public class ObjectPreview : MonoBehaviour
         if (selectedIndex > 0)
         {
             selectedIndex -= 1;
-            selected = tools[selectedIndex];
-            updatePreview();
         }
+        else
+        {
+            selectedIndex = tools.Length - 1;
+        }
+        selected = tools[selectedIndex];
+        updatePreview();
     }
 
     void updateTiles()

@@ -56,7 +56,6 @@ public class Countdown : MonoBehaviour
                 case 1:
                     countdown_running = true;
                     timer = 0;
-                    player = GameObject.FindGameObjectWithTag("Player");
                     changeSprite(sprite_ready);
                     move_target = onscreenY;
                     break;
@@ -90,6 +89,7 @@ public class Countdown : MonoBehaviour
         }
         else if (timer >= 5)
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             player.SendMessage("startControls");
             changeSprite(sprite_go);
         }

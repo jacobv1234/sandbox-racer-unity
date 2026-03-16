@@ -1,6 +1,7 @@
 using System;
 using System.Linq; // array tools such as Concat and Contains
 using UnityEngine;
+using TMPro;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public class PlayerControl : MonoBehaviour
     private Track track;
     private GameObject[] checkpoints;
     private int lap;
+    [SerializeField]
+    private int laps = 5;
+
+    private TMP_Text lapCounter;
+    private GameObject finishText;
     
 
     void Accelerate()
@@ -240,6 +246,8 @@ public class PlayerControl : MonoBehaviour
         }
         lap = 1;
         checkpoints = new GameObject[0];
+        lapCounter = GameObject.Find("LapCounter").GetComponent<TMP_Text>();
+        finishText = GameObject.Find("FinishText");
     }
 
     // Update is called once per frame
@@ -269,6 +277,12 @@ public class PlayerControl : MonoBehaviour
     private void startControls()
     {
         actions.Enable();
+        updateLapCounter();
+    }
+
+    private void updateLapCounter()
+    {
+        lapCounter.text = "Lap: " + lap + " / " + laps;
     }
 
 
@@ -278,6 +292,7 @@ public class PlayerControl : MonoBehaviour
         {
             actions.Disable(); // memory cleanup
         }
+        lapCounter.text = ""; // hide lap counter
     }
 
     // stop momentum when hit wall
@@ -326,6 +341,15 @@ public class PlayerControl : MonoBehaviour
                 // reset lap
                 checkpoints = new GameObject[0];
                 lap += 1;
+                if (lap > laps)
+                {
+                    actions.Disable();
+                    finishText.SendMessage("doAnimation");
+                }
+                else
+                {
+                    updateLapCounter();
+                }
             }
         }
     }

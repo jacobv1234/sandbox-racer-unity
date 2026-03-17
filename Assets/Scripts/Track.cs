@@ -9,6 +9,7 @@ public class Track : MonoBehaviour
 
     private GameObject[] checkpoints;
     private GameObject finish = null;
+    private int laps;
 
     private StateTracker state;
 
@@ -80,6 +81,32 @@ public class Track : MonoBehaviour
             return "Error: Track must include at least one checkpoint.";
         }
 
+
+        // load lap count
+        string lapText = GameObject.Find("LapEntry").GetComponent<TMP_InputField>().text;
+
+        if (lapText == "")
+        {
+            lapText = "3";
+        }
+
+        // parse text
+        if (int.TryParse(lapText, out int num))
+        {
+            if (num > 0)
+            {
+                laps = num;
+            }
+            else
+            {
+                return "Error: Lap count must be greater than 0.";
+            }
+        }
+        else
+        {
+            return "Error: Lap count must be a number.";
+        }
+
         return "";
     }
 
@@ -126,5 +153,10 @@ public class Track : MonoBehaviour
     public int getCheckpointCount()
     {
         return checkpoints.Length;
+    }
+
+    public int getLapCount()
+    {
+        return laps;
     }
 }

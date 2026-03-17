@@ -50,7 +50,6 @@ public class PlayerControl : MonoBehaviour
     private Track track;
     private GameObject[] checkpoints;
     private int lap;
-    [SerializeField]
     private int laps = 5;
 
     private TMP_Text lapCounter;
@@ -245,6 +244,7 @@ public class PlayerControl : MonoBehaviour
             track = trackObj.GetComponent<Track>();
         }
         lap = 1;
+        laps = track.getLapCount();
         checkpoints = new GameObject[0];
         lapCounter = GameObject.Find("LapCounter").GetComponent<TMP_Text>();
         finishText = GameObject.Find("FinishText");

@@ -3654,6 +3654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4a5489038d57b4e926437a66667a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Track
+  gridSize: 8
 --- !u!1 &1211420011
 GameObject:
   m_ObjectHideFlags: 0

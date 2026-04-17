@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class Track : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Track : MonoBehaviour
     [SerializeField]
     private int gridSize = 8;
 
-    private int[,] path = null;
+    private List<List<int>> path = null;
 
     private StateTracker state;
 
@@ -47,9 +48,12 @@ public class Track : MonoBehaviour
     private string findPath()
     {
         // setup and 1st move from finish line
-        path = new int[2, 2];
-        path[0, 0] = finishXIndex;
-        path[0, 1] = finishYIndex;
+        path = new List<List<int>>
+        {
+            new List<int>{
+                finishXIndex, finishYIndex
+            }
+        };
 
         int currentX = finishXIndex;
         int currentY = finishYIndex;
@@ -71,8 +75,7 @@ public class Track : MonoBehaviour
                 break;
         }
 
-        path[1, 0] = currentX;
-        path[1, 1] = currentY;
+        path.Add(new List<int> { currentX, currentY });
 
         // iterate through each track
         while (true)
@@ -175,13 +178,7 @@ public class Track : MonoBehaviour
             }
 
             // add the next tile to the path
-            int[,] newPath = new int[path.GetLength(0), 2];
-            for (int i = 0; i < path.GetLength(0); i++)
-            {
-                newPath[i,0] = path[i,0];
-                newPath[i,1] = path[i,1];
-            }
-            path = newPath;
+            path.Add(new List<int> { currentX, currentY });
         }
     }
 
@@ -313,5 +310,10 @@ public class Track : MonoBehaviour
     public int getLapCount()
     {
         return laps;
+    }
+
+    public List<List<int>> getPath()
+    {
+        return path;
     }
 }

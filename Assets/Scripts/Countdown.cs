@@ -29,6 +29,7 @@ public class Countdown : MonoBehaviour
     private StateTracker state;
 
     private GameObject player;
+    private GameObject opponent;
 
     private Image image;
     private RectTransform transform2D;
@@ -49,6 +50,7 @@ public class Countdown : MonoBehaviour
                     move_target = offscreenY;
                     timer = 0;
                     player = null;
+                    opponent = null;
                     countdown_running = false;
                     changeSprite(sprite_ready);
                     break;
@@ -91,6 +93,10 @@ public class Countdown : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
             player.SendMessage("startControls");
+
+            opponent = GameObject.FindGameObjectWithTag("Opponent");
+            opponent.SendMessage("startDriving");
+
             changeSprite(sprite_go);
         }
         else if (timer >= 4)

@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CarSpawner
   playerCarPrefab: {fileID: 3273165481774544806, guid: 4d81a3f26bf3a394dbe02af5a1099e4d, type: 3}
+  enemyCarPrefab: {fileID: 8663673574762740106, guid: 148a43bf736475444b84be5f7291ecd0, type: 3}
 --- !u!65 &5839589397133728786
 BoxCollider:
   m_ObjectHideFlags: 0

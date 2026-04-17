@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Countdown.cs" />
     <Compile Include="Assets\Scripts\Track.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\EnemyControl.cs" />
     <Compile Include="Assets\Scripts\StateTracker.cs" />
   </ItemGroup>
   <ItemGroup>

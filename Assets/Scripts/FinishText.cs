@@ -44,11 +44,28 @@ public class FinishText : MonoBehaviour
         }
     }
 
-    private void doAnimation()
+    private void playerWins()
     {
+        if (animation_running)
+        {
+            return;
+        }
         animation_running = true;
         timer = 0;
         targetSize = maxFontSize;
+        text.SetText("Winner!");
+    }
+
+    private void enemyWins()
+    {
+        if (animation_running)
+        {
+            return;
+        }
+        animation_running = true;
+        timer = 0;
+        targetSize = maxFontSize;
+        text.SetText("Loser...");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

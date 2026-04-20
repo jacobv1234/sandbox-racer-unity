@@ -1,12 +1,14 @@
 using Unity.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq; // array tools such as Concat and Contains
 
 public class EnemyControl : MonoBehaviour
 {
     [SerializeField]
     private float scale = 0.5f;
 
+    private Track track;
     private List<List<int>> path;
 
     private bool AIEnabled = false;
@@ -19,22 +21,35 @@ public class EnemyControl : MonoBehaviour
 
     [SerializeField]
     // how far away the angle of the car is from facing the center of the next tile when it stops accelerating
-    private float turnOnSpotCutoff = 60.0f;
+    private float slowTurnOnSpotCutoff = 60.0f;
+    [SerializeField]
+    private float fastTurnOnSpotCutoff = 80.0f;
+    private float turnOnSpotCutoff;
 
     [SerializeField]
     // how close the car is to the center of the next tile before it changes target (in tiles)
-    private float targetRadius = 0.8f;
+    private float slowTargetRadius = 0.8f;
+    [SerializeField]
+    private float fastTargetRadius = 0.9f;
+    private float targetRadius;
 
 
     // Car physics
     [SerializeField]
-    private float turnSpeed = 200.0f;
+    private float slowTurnSpeed = 200.0f;
+    [SerializeField]
+    private float fastTurnSpeed = 250.0f;
+    private float turnSpeed;
     [SerializeField]
     private float rotationAccel = 10.0f;
     [SerializeField]
     private float rotationFriction = 50.0f;
     [SerializeField]
-    private float topSpeed = 20.0f;
+    private float slowTopSpeed = 18.0f;
+    [SerializeField]
+    private float fastTopSpeed = 22.0f;
+    private float topSpeed;
+    
     [SerializeField]
     private float acceleration = 0.3f;
     [SerializeField]
@@ -43,6 +58,7 @@ public class EnemyControl : MonoBehaviour
     private float airFriction = 0.3f;
 
     private float objectHeight = 1.5f;
+    private ParticleSystem trail;
 
     [SerializeField]
     private float speed = 0.0f;
@@ -50,6 +66,12 @@ public class EnemyControl : MonoBehaviour
     private float rotation = 0.0f;
     [SerializeField]
     private bool grounded = false;
+
+    private Vector3 respawnCoords;
+    private Quaternion respawnRotation;
+    private GameObject[] checkpoints;
+    private int lap;
+    private int laps;
 
     private bool isAccelerating = false;
     private bool isSteering = false;
@@ -76,15 +98,43 @@ public class EnemyControl : MonoBehaviour
     [SerializeField, ReadOnly]
     private float tAngle;
 
+    [SerializeField]
+    private GameObject checkpointParticle;
+    [SerializeField]
+    private GameObject finishParticle;
+
+    private GameObject finishText;
+
+    private PlayerControl player;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         transform.localScale = new Vector3(scale, scale, scale);
+        trail = GetComponent<ParticleSystem>();
+
+        GameObject trackObj = GameObject.Find("TileFloor");
+        if (trackObj != null)
+        {
+            track = trackObj.GetComponent<Track>();
+        }
+        lap = 1;
+        laps = track.getLapCount();
+        checkpoints = new GameObject[0];
+
+        finishText = GameObject.Find("FinishText");
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+
+        turnSpeed = slowTurnSpeed;
+        topSpeed = slowTopSpeed;
+        targetRadius = slowTargetRadius;
+        turnOnSpotCutoff = slowTurnOnSpotCutoff;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!AIEnabled)
         {
@@ -173,6 +223,8 @@ public class EnemyControl : MonoBehaviour
         Turn();
         CheckAirborne();
         DecayValues();
+        UpdateTrail();
+        RubberBand();
     }
 
 
@@ -247,13 +299,13 @@ public class EnemyControl : MonoBehaviour
     {
         Vector3 moveVector = new Vector3(0, 0, speed);
 
-        transform.Translate(moveVector * Time.deltaTime);
+        transform.Translate(moveVector * Time.fixedDeltaTime);
     }
 
     void Turn()
     {
         Vector3 rotationVector = new Vector3(0, rotation, 0);
-        transform.Rotate(rotationVector * Time.deltaTime);
+        transform.Rotate(rotationVector * Time.fixedDeltaTime);
     }
 
     void CheckAirborne()
@@ -279,7 +331,7 @@ public class EnemyControl : MonoBehaviour
         {
             if (speed < 0.0f)
             {
-                speed += topSpeed * friction * Time.deltaTime;
+                speed += topSpeed * friction * Time.fixedDeltaTime;
                 if (speed > 0.0f)
                 {
                     speed = 0.0f;
@@ -287,7 +339,7 @@ public class EnemyControl : MonoBehaviour
             }
             else
             {
-                speed -= topSpeed * friction * Time.deltaTime;
+                speed -= topSpeed * friction * Time.fixedDeltaTime;
                 if (speed < 0.0f)
                 {
                     speed = 0.0f;
@@ -299,7 +351,7 @@ public class EnemyControl : MonoBehaviour
         {
             if (rotation < 0.0f)
             {
-                rotation += turnSpeed * rotationFriction * Time.deltaTime;
+                rotation += turnSpeed * rotationFriction * Time.fixedDeltaTime;
                 if (rotation > 0.0f)
                 {
                     rotation = 0.0f;
@@ -307,7 +359,7 @@ public class EnemyControl : MonoBehaviour
             }
             else
             {
-                rotation -= turnSpeed * rotationFriction * Time.deltaTime;
+                rotation -= turnSpeed * rotationFriction * Time.fixedDeltaTime;
                 if (rotation < 0.0f)
                 {
                     rotation = 0.0f;
@@ -325,9 +377,7 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-    /*
-     * Not currently in use
-     * May activate at some point to give a particle trail to the opponent
+
     void UpdateTrail()
     {
         if (!trail.isPlaying && speed > 0 && grounded)
@@ -339,5 +389,79 @@ public class EnemyControl : MonoBehaviour
             trail.Stop();
         }
     }
-    */
+
+    // hit checkpoint / finish line
+    private void OnTriggerEnter(Collider other)
+    {
+        if (track == null)
+        {
+            return;
+        }
+
+        // update respawn location
+        respawnCoords = other.transform.position + Vector3.up;
+        respawnRotation = other.transform.rotation;
+
+        // detect trigger type
+        if (other.name.Contains("checkpoint"))
+        {
+            // checkpoint
+            // check it's a new checkpoint
+            if (!checkpoints.Contains(other.gameObject))
+            {
+                // create particle
+                Instantiate(checkpointParticle, respawnCoords, respawnRotation);
+                // register checkpoint
+                checkpoints = checkpoints.Concat(new GameObject[] { other.gameObject }).ToArray();
+            }
+        }
+        else
+        {
+            // finish line
+            // check lap is valid
+            if (track.getCheckpointCount() == checkpoints.Length)
+            {
+                // create particle
+                Instantiate(finishParticle, respawnCoords, respawnRotation);
+
+                // reset lap
+                checkpoints = new GameObject[0];
+                lap += 1;
+
+                if (lap > laps)
+                {
+                    finishText.SendMessage("enemyWins");
+                }
+            }
+        }
+    }
+
+    private void RubberBand()
+    {
+        int playerPos = player.getPosition();
+        if (playerPos == 1)
+        {
+            topSpeed = fastTopSpeed;
+            turnSpeed = fastTurnSpeed;
+            turnOnSpotCutoff = fastTurnOnSpotCutoff;
+            targetRadius = fastTargetRadius;
+        }
+        else
+        {
+            topSpeed = slowTopSpeed;
+            turnSpeed = slowTurnSpeed;
+            turnOnSpotCutoff = slowTurnOnSpotCutoff;
+            targetRadius = slowTargetRadius;
+        }
+    }
+
+    public int getLap()
+    {
+        return lap;
+    }
+
+    public int getCheckpointCount()
+    {
+        return checkpoints.Length;
+    }
 }

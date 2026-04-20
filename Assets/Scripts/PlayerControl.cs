@@ -2,6 +2,7 @@ using System;
 using System.Linq; // array tools such as Concat and Contains
 using UnityEngine;
 using TMPro;
+using System.ComponentModel;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -52,8 +53,13 @@ public class PlayerControl : MonoBehaviour
     private int lap;
     private int laps = 5;
 
+    [SerializeField]
+    private int position = 1;
+
     private TMP_Text lapCounter;
     private GameObject finishText;
+
+    private EnemyControl opponent;
     
 
     void Accelerate()
@@ -132,13 +138,13 @@ public class PlayerControl : MonoBehaviour
     {
         Vector3 moveVector = new Vector3(0, 0, speed);
 
-        transform.Translate(moveVector * Time.deltaTime);
+        transform.Translate(moveVector * Time.fixedDeltaTime);
     }
 
     void Turn()
     {
         Vector3 rotationVector = new Vector3(0, rotation, 0);
-        transform.Rotate(rotationVector * Time.deltaTime);
+        transform.Rotate(rotationVector * Time.fixedDeltaTime);
     }
 
     void Respawn()
@@ -173,7 +179,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (speed < 0.0f)
             {
-                speed += topSpeed * friction * Time.deltaTime;
+                speed += topSpeed * friction * Time.fixedDeltaTime;
                 if (speed > 0.0f)
                 {
                     speed = 0.0f;
@@ -181,7 +187,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                speed -= topSpeed * friction * Time.deltaTime;
+                speed -= topSpeed * friction * Time.fixedDeltaTime;
                 if (speed < 0.0f)
                 {
                     speed = 0.0f;
@@ -193,7 +199,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (rotation < 0.0f)
             {
-                rotation += turnSpeed * rotationFriction * Time.deltaTime;
+                rotation += turnSpeed * rotationFriction * Time.fixedDeltaTime;
                 if (rotation > 0.0f)
                 {
                     rotation = 0.0f;
@@ -201,7 +207,7 @@ public class PlayerControl : MonoBehaviour
             }
             else
             {
-                rotation -= turnSpeed * rotationFriction * Time.deltaTime;
+                rotation -= turnSpeed * rotationFriction * Time.fixedDeltaTime;
                 if (rotation < 0.0f)
                 {
                     rotation = 0.0f;
@@ -248,6 +254,8 @@ public class PlayerControl : MonoBehaviour
         checkpoints = new GameObject[0];
         lapCounter = GameObject.Find("LapCounter").GetComponent<TMP_Text>();
         finishText = GameObject.Find("FinishText");
+
+        opponent = GameObject.FindGameObjectWithTag("Opponent").GetComponent<EnemyControl>();
     }
 
     // Update is called once per frame
@@ -258,7 +266,10 @@ public class PlayerControl : MonoBehaviour
         DownPressed = actions.Player.Brake.IsPressed();
         LeftPressed = actions.Player.Left.IsPressed();
         RightPressed = actions.Player.Right.IsPressed();
+    }
 
+    private void FixedUpdate()
+    {
         if (UpPressed) {Accelerate();}
         if (DownPressed) {Decelerate();}
         if (LeftPressed) {SteerLeft();}
@@ -272,6 +283,8 @@ public class PlayerControl : MonoBehaviour
         CheckAirborne();
         DecayValues();
         UpdateTrail();
+
+        updatePosition();
     }
 
     private void startControls()
@@ -284,6 +297,19 @@ public class PlayerControl : MonoBehaviour
     {
         lapCounter.text = "Lap: " + lap + " / " + laps;
     }
+
+    private void updatePosition()
+    {
+        int enemyLapCount = opponent.getLap();
+        int enemyCPCount = opponent.getCheckpointCount();
+        int playerCPCount = checkpoints.Length;
+
+        if (enemyLapCount > lap) { position = 2; return; }
+        if (enemyLapCount < lap) { position = 1; return; }
+        if (enemyCPCount > playerCPCount) { position = 2; return; }
+        if (enemyCPCount < playerCPCount) { position = 1; return; }
+    }
+
 
 
     private void OnDestroy()
@@ -344,7 +370,7 @@ public class PlayerControl : MonoBehaviour
                 if (lap > laps)
                 {
                     actions.Disable();
-                    finishText.SendMessage("doAnimation");
+                    finishText.SendMessage("playerWins");
                 }
                 else
                 {
@@ -352,5 +378,10 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    public int getPosition()
+    {
+        return position;
     }
 }

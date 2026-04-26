@@ -60,6 +60,12 @@ public class PlayerControl : MonoBehaviour
     private GameObject finishText;
 
     private EnemyControl opponent;
+
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip checkpointSFX;
+    [SerializeField]
+    private AudioClip finishSFX;
     
 
     void Accelerate()
@@ -256,6 +262,8 @@ public class PlayerControl : MonoBehaviour
         finishText = GameObject.Find("FinishText");
 
         opponent = GameObject.FindGameObjectWithTag("Opponent").GetComponent<EnemyControl>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -353,6 +361,9 @@ public class PlayerControl : MonoBehaviour
                 Instantiate(checkpointParticle, respawnCoords, respawnRotation);
                 // register checkpoint
                 checkpoints = checkpoints.Concat(new GameObject[] { other.gameObject }).ToArray();
+
+                // play sound
+                audioSource.PlayOneShot(checkpointSFX);
             }
         }
         else
@@ -375,6 +386,7 @@ public class PlayerControl : MonoBehaviour
                 else
                 {
                     updateLapCounter();
+                    audioSource.PlayOneShot(finishSFX);
                 }
             }
         }

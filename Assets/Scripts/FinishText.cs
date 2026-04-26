@@ -16,6 +16,12 @@ public class FinishText : MonoBehaviour
 
     private StateTracker state;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip winnerSFX;
+    [SerializeField]
+    private AudioClip loserSFX;
+
     private void updateFontSize()
     {
         float size = text.fontSize;
@@ -54,6 +60,7 @@ public class FinishText : MonoBehaviour
         timer = 0;
         targetSize = maxFontSize;
         text.SetText("Winner!");
+        audioSource.PlayOneShot(winnerSFX);
     }
 
     private void enemyWins()
@@ -66,6 +73,7 @@ public class FinishText : MonoBehaviour
         timer = 0;
         targetSize = maxFontSize;
         text.SetText("Loser...");
+        audioSource.PlayOneShot(loserSFX);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -76,6 +84,8 @@ public class FinishText : MonoBehaviour
         targetSize = 0;
         state = GameObject.FindGameObjectWithTag("State").GetComponent<StateTracker>();
         animation_running = false;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

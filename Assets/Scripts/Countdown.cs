@@ -25,6 +25,8 @@ public class Countdown : MonoBehaviour
     private float timer;
     private float move_target;
     private bool countdown_running;
+    // used to ensure each part of updateSpriteAndTarget only runs once
+    private int countdown_stage;
 
     private StateTracker state;
 
@@ -33,6 +35,12 @@ public class Countdown : MonoBehaviour
 
     private Image image;
     private RectTransform transform2D;
+
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip sound_321;
+    [SerializeField]
+    private AudioClip sound_GO;
 
     private void changeSprite(Sprite sprite)
     {
@@ -60,6 +68,7 @@ public class Countdown : MonoBehaviour
                     timer = 0;
                     changeSprite(sprite_ready);
                     move_target = onscreenY;
+                    countdown_stage = 0;
                     break;
             }
         }
@@ -85,11 +94,12 @@ public class Countdown : MonoBehaviour
 
     private void updateSpriteAndTarget()
     {
-        if (timer >= 6)
+        if (timer >= 6 && countdown_stage == 4)
         {
             move_target = offscreenY;
+            countdown_stage = 5;
         }
-        else if (timer >= 5)
+        else if (timer >= 5 && countdown_stage == 3)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             player.SendMessage("startControls");
@@ -98,18 +108,26 @@ public class Countdown : MonoBehaviour
             opponent.SendMessage("startDriving");
 
             changeSprite(sprite_go);
+            audioSource.PlayOneShot(sound_GO);
+            countdown_stage++;
         }
-        else if (timer >= 4)
+        else if (timer >= 4 && countdown_stage == 2)
         {
             changeSprite(sprite_1);
+            audioSource.PlayOneShot(sound_321);
+            countdown_stage++;
         }
-        else if (timer >= 3)
+        else if (timer >= 3 && countdown_stage == 1)
         {
             changeSprite(sprite_2);
+            audioSource.PlayOneShot(sound_321);
+            countdown_stage++;
         }
-        else if (timer >= 2)
+        else if (timer >= 2 && countdown_stage == 0)
         {
             changeSprite(sprite_3);
+            audioSource.PlayOneShot(sound_321);
+            countdown_stage++;
         }
     }
 
@@ -129,6 +147,8 @@ public class Countdown : MonoBehaviour
         timer = 0;
         move_target = offscreenY;
         countdown_running = false;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

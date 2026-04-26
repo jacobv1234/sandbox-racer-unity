@@ -13,6 +13,8 @@ public class DeleteTrack : MonoBehaviour
 
     private StateTracker state;
 
+    private GameObject SFXPlayer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,8 @@ public class DeleteTrack : MonoBehaviour
         {
             state = stateObj.GetComponent<StateTracker>();
         }
+
+        SFXPlayer = GameObject.Find("SFXPlayer");
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class DeleteTrack : MonoBehaviour
             if (Physics.Raycast(ray, out hit) && hit.transform.name == transform.name && canDestroy)
             {
                 Destroy(gameObject);
+                SFXPlayer.SendMessage("PlayRemoveSFX", SendMessageOptions.DontRequireReceiver);
             }
         }
 

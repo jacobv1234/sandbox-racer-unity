@@ -316,4 +316,9 @@ public class Track : MonoBehaviour
     {
         return path;
     }
+
+    public string getNameOfTileAt(int x, int y)
+    {
+        return tracks[x, y].name;
+    }
 }

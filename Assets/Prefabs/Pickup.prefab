@@ -523,15 +523,13 @@ MonoBehaviour:
   scale: 0.5
   turnPrecision: 5
   slowTurnOnSpotCutoff: 60
-  fastTurnOnSpotCutoff: 80
-  slowTargetRadius: 0.8
-  fastTargetRadius: 0.9
-  slowTurnSpeed: 200
-  fastTurnSpeed: 250
-  rotationAccel: 10
+  fastTurnOnSpotCutoff: 60
+  slowTurnSpeed: 350
+  fastTurnSpeed: 550
+  rotationAccel: 25
   rotationFriction: 50
-  slowTopSpeed: 16
-  fastTopSpeed: 19.5
+  slowTopSpeed: 15.5
+  fastTopSpeed: 18.5
   acceleration: 0.3
   groundFriction: 1
   airFriction: 0.3

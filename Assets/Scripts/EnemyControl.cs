@@ -26,12 +26,15 @@ public class EnemyControl : MonoBehaviour
     private float fastTurnOnSpotCutoff = 80.0f;
     private float turnOnSpotCutoff;
 
+    /* No longer used since changing how targeting works
+     * 
     [SerializeField]
     // how close the car is to the center of the next tile before it changes target (in tiles)
     private float slowTargetRadius = 0.8f;
     [SerializeField]
     private float fastTargetRadius = 0.9f;
     private float targetRadius;
+    */
 
 
     // Car physics
@@ -72,6 +75,7 @@ public class EnemyControl : MonoBehaviour
     private GameObject[] checkpoints;
     private int lap;
     private int laps;
+    private string currentTile;
 
     private bool isAccelerating = false;
     private bool isSteering = false;
@@ -129,8 +133,10 @@ public class EnemyControl : MonoBehaviour
 
         turnSpeed = slowTurnSpeed;
         topSpeed = slowTopSpeed;
-        targetRadius = slowTargetRadius;
+        //targetRadius = slowTargetRadius;
         turnOnSpotCutoff = slowTurnOnSpotCutoff;
+
+        CheckAirborne();
     }
 
     // Update is called once per frame
@@ -208,7 +214,8 @@ public class EnemyControl : MonoBehaviour
         }
 
         // update target
-        if (distance < targetRadius)
+        //if (distance < targetRadius)
+        if (currentTile.Equals(track.getNameOfTileAt(path[target][0], path[target][1])))
         {
             target += 1;
             // loop round at the end of the lap
@@ -311,7 +318,11 @@ public class EnemyControl : MonoBehaviour
     void CheckAirborne()
     {
         Vector3 offset = transform.rotation * Vector3.up;
-        grounded = Physics.Raycast(transform.position + offset, transform.rotation * Vector3.down, objectHeight);
+        RaycastHit hit;
+        grounded = Physics.Raycast(transform.position + offset, transform.rotation * Vector3.down, out hit, objectHeight);
+        if (grounded) {
+            currentTile = hit.transform.name;
+        }
     }
 
     void DecayValues()
@@ -444,14 +455,14 @@ public class EnemyControl : MonoBehaviour
             topSpeed = fastTopSpeed;
             turnSpeed = fastTurnSpeed;
             turnOnSpotCutoff = fastTurnOnSpotCutoff;
-            targetRadius = fastTargetRadius;
+            //targetRadius = fastTargetRadius;
         }
         else
         {
             topSpeed = slowTopSpeed;
             turnSpeed = slowTurnSpeed;
             turnOnSpotCutoff = slowTurnOnSpotCutoff;
-            targetRadius = slowTargetRadius;
+            //targetRadius = slowTargetRadius;
         }
     }
 

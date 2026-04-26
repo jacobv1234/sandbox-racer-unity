@@ -22,6 +22,8 @@ public class TrackSpawning : MonoBehaviour
     private GameObject child;
     private Vector3 position;
 
+    private GameObject SFXPlayer;
+
 
     // create a tile
     void create_object()
@@ -53,12 +55,15 @@ public class TrackSpawning : MonoBehaviour
         Vector3 rotateVector = new Vector3(0, rotation, 0);
         child.transform.Rotate(rotateVector);
         child.transform.name += transform.name; // make all tiles have unique names so they can be clicked individually
+
+        SFXPlayer.SendMessage("PlayBuildSFX", SendMessageOptions.DontRequireReceiver);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         position = transform.position + (Vector3.up);
+        SFXPlayer = GameObject.Find("SFXPlayer");
     }
 
     // Update is called once per frame

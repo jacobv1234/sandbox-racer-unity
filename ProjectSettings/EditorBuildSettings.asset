@@ -4,7 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 319e8f2edb795f34c85bc9caa2723692
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 96070187d119e594ab922b87712dc251
+  - enabled: 1
+    path: Assets/Scenes/LevelEditor.unity
+    guid: e9f2d73f29e265e4a9d1c5a8f4253e5f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0

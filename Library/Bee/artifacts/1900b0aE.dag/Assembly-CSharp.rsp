@@ -439,6 +439,7 @@
 "Assets/Scripts/EnemyControl.cs"
 "Assets/Scripts/FinishText.cs"
 "Assets/Scripts/HideDuringRace.cs"
+"Assets/Scripts/MenuHandler.cs"
 "Assets/Scripts/ModeSwitchSpriteSwap.cs"
 "Assets/Scripts/MusicController.cs"
 "Assets/Scripts/ObjectPreview.cs"

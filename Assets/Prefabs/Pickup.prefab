@@ -528,7 +528,7 @@ MonoBehaviour:
   fastTurnSpeed: 550
   rotationAccel: 25
   rotationFriction: 50
-  slowTopSpeed: 15.5
+  slowTopSpeed: 15
   fastTopSpeed: 18.5
   acceleration: 0.3
   groundFriction: 1

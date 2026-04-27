@@ -441,7 +441,7 @@
 "Assets/Scripts/HideDuringRace.cs"
 "Assets/Scripts/MenuHandler.cs"
 "Assets/Scripts/ModeSwitchSpriteSwap.cs"
-"Assets/Scripts/MusicController.cs"
+"Assets/Scripts/MusicPlayer.cs"
 "Assets/Scripts/ObjectPreview.cs"
 "Assets/Scripts/PlayerControl.cs"
 "Assets/Scripts/SFXPlayer.cs"

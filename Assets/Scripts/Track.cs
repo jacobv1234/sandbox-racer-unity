@@ -23,6 +23,8 @@ public class Track : MonoBehaviour
 
     private TMP_Text errorMessageBox; // type is a TextMeshPro text object
 
+    private MusicPlayer music;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -259,7 +261,13 @@ public class Track : MonoBehaviour
             return "Error: Lap count must be a number.";
         }
 
-        return findPath();
+        string success = findPath();
+        if (success.Equals(""))
+        {
+            music = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
+            music.SendMessage("StartRaceMusic", SendMessageOptions.DontRequireReceiver);
+        }
+        return success;
     }
 
     // called by clear button

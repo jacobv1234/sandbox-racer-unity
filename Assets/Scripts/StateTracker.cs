@@ -9,6 +9,8 @@ public class StateTracker : MonoBehaviour
     [SerializeField]
     private bool changedThisFrame;
 
+    private MusicPlayer music;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,12 @@ public class StateTracker : MonoBehaviour
         {
             changedThisFrame = true;
             state = nextstate;
+            // switch music back to builder
+            if (state == 0)
+            {
+                music = GameObject.Find("MusicPlayer").GetComponent<MusicPlayer>();
+                music.SendMessage("StartBuildMusic", SendMessageOptions.DontRequireReceiver);
+            }
         }
         else
         {
